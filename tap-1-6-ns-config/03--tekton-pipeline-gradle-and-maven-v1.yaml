@@ -29,11 +29,8 @@ spec:
 
               maven=mvnw
               gradle=gradlew
-              gemfile=Gemfile
               if [ -f "$maven" ]; then
                 ./mvnw test
               elif [ -f "$gradle" ]; then
                 ./gradlew test
-              elif [ -f "$gemfile"]; then
-                ./bin/rails test
               fi
