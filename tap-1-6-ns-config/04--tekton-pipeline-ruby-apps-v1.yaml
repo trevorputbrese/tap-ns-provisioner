@@ -29,6 +29,6 @@ spec:
 
               wget -qO- $(params.source-url) | tar xvz -m
 
-              cd rails assets
+              cd rails-assets
               bundle install
               ./bin/rails test test/spec_test.rb
