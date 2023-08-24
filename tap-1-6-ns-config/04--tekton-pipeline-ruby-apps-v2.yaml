@@ -30,4 +30,4 @@ spec:
               wget -qO- $(params.source-url) | tar xvz -m
 
               bundle install
-              rails test test/spec_test.rb
+              ruby test.rb
