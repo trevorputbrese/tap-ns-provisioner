@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: tekton-pipeline-ruby-apps-v2
+  labels:
+    apps.tanzu.vmware.com/pipeline: test     # (!) required
+    apps.tanzu.vmware.com/language: ruby
+    apps.tanzu.vmware.com/version: '2'
+spec:
+  params:
+    - name: source-url                       # (!) required
+    - name: source-revision                  # (!) required
+  tasks:
+    - name: test
+      params:
+        - name: source-url
+          value: $(params.source-url)
+        - name: source-revision
+          value: $(params.source-revision)
+      taskSpec:
+        params:
+          - name: source-url
+          - name: source-revision
+        steps:
+          - name: test
+            image: ruby:3.1.4
+            script: |-
+              cd `mktemp -d`
+
+              wget -qO- $(params.source-url) | tar xvz -m
+
+              bundle install
+              rails test test/spec_test.rb
