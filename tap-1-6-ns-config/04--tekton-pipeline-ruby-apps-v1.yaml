@@ -4,7 +4,7 @@ metadata:
   name: tekton-pipeline-ruby-apps
   labels:
     apps.tanzu.vmware.com/pipeline: test     # (!) required
-    apps.tanzu.vmware.com/language: ruby
+    apps.tanzu.vmware.com/language: ruby-rails
 
 spec:
   params:
